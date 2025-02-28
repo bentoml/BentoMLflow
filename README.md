@@ -37,7 +37,10 @@ python3 save_model.py
 Verify that the model has been successfully saved:
 
 ```bash
-bentoml models list
+$ bentoml models list
+
+Tag                                        Module           Size        Creation Time
+iris:e3tgooxvp26ww3ka                      bentoml.mlflow   10.03 KiB   2025-02-28 02:46:03
 ```
 
 ## Run BentoML Services
