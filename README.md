@@ -2,34 +2,66 @@
     <h1 align="center">Serve an MLflow Model with BentoML</h1>
 </div>
 
-This is a BentoML example project, which demonstrates how to serve and deploy an [MLflow](https://github.com/mlflow/mlflow) model with BentoML.
+[MLflow](https://github.com/mlflow/mlflow) is an open-source platform, purpose-built to assist machine learning practitioners and teams in handling the complexities of the machine learning process. MLflow focuses on the full lifecycle for machine learning projects, ensuring that each phase is manageable, traceable, and reproducible.
+
+This is a BentoML example project that demonstrates how to serve and deploy an MLflow model with BentoML.
 
 See [here](https://docs.bentoml.com/en/latest/examples/overview.html) for a full list of BentoML example projects.
 
 ## Install dependencies
 
+Clone the repository.
+
 ```bash
 git clone https://github.com/bentoml/BentoMLflow.git
 cd BentoMLflow
-
-# Recommend Python 3.11
-pip install -r requirements.txt
 ```
+
+Install BentoML and the required dependencies for this project.
+
+```bash
+# Recommend Python 3.11
+pip install bentoml mlflow scikit-learn
+```
+
+While the example uses scikit-learn for demo purposes, both MLflow and BentoML support a wide variety of frameworks, such as PyTorch, TensorFlow and XGBoost.
 
 ## Train and save a model
 
-Save the model to the BentoML Model Store:
+Save the MLflow model to the BentoML Model Store:
 
 ```bash
 python3 save_model.py
 ```
 
-## Run the BentoML Service
+Verify that the model has been successfully saved:
 
-We have defined a BentoML Service in `service.py`. Run `bentoml serve` in your project directory to start the Service.
+```bash
+$ bentoml models list
+
+Tag                                        Module           Size        Creation Time
+iris:e3tgooxvp26ww3ka                      bentoml.mlflow   10.03 KiB   2025-02-28 02:46:03
+```
+
+## Run BentoML Services
+
+In this project, we provide multiple BentoML Services for the MLflow model for different use cases:
+
+- `service.py`: A basic BentoML Service that serves the MLflow model
+- `service_io_validate.py`: Enforces input data validation
+- `service_batching.py`: Enables adaptive batching to efficiently handle concurrent requests 
+
+For larger teams collaborating on multiple models and projects, you can use the following examples to standardize ML service development.
+
+- `service_standardized_api.py`: Uses the shared components in `common.py` and enforces environment dependencies and API specifications across multiple projects
+- `service_multi_model.py`: Serves multiple models in a single Service
+
+For more information about them, see the blog post [Building ML Pipelines with MLflow and BentoML](https://www.bentoml.com/blog/building-ml-pipelines-with-mlflow-and-bentoml).
+
+Let's try the Service with the basic setup. Run `bentoml serve` to start it.
 
 ```python
-$ bentoml serve .
+$ bentoml serve service.py:IrisClassifier
 
 2024-06-19T10:25:31+0000 [INFO] [cli] Starting production HTTP BentoServer from "service:IrisClassifier" listening on http://localhost:3000 (Press CTRL+C to quit)
 ```
@@ -78,7 +110,7 @@ For detailed explanations, see [the BentoML documentation](https://docs.bentoml.
 
 After the Service is ready, you can deploy the application to BentoCloud for better management and scalability. [Sign up](https://www.bentoml.com/) if you haven't got a BentoCloud account.
 
-Make sure you have [logged in to BentoCloud](https://docs.bentoml.com/en/latest/bentocloud/how-tos/manage-access-token.html).
+Make sure you have [logged in to BentoCloud](https://docs.bentoml.com/en/latest/scale-with-bentocloud/manage-api-tokens.html).
 
 ```bash
 bentoml cloud login
@@ -87,7 +119,7 @@ bentoml cloud login
 Deploy it from the project directory.
 
 ```bash
-bentoml deploy .
+bentoml deploy service.py:IrisClassifier
 ```
 
 Once the application is up and running, you can access it via the exposed URL.
