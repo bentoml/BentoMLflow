@@ -1,6 +1,6 @@
-iimport time
+import time
 import random
-mport requests
+import requests
 
 from concurrent.futures import ThreadPoolExecutor
 from sklearn.datasets import load_iris
