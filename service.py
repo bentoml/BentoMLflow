@@ -4,7 +4,7 @@ import numpy as np
 from bentoml.models import BentoModel
 
 # Define the runtime environment for your Bento
-demo_image = bentoml.images.PythonImage(python_version="3.11") \
+demo_image = bentoml.images.Image(python_version="3.11") \
     .python_packages("mlflow", "scikit-learn")
 
 target_names = ['setosa', 'versicolor', 'virginica']

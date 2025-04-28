@@ -6,7 +6,7 @@ from pydantic import Field
 from bentoml.validators import Shape, DType
 from typing import Annotated
 
-demo_image = bentoml.images.PythonImage(python_version="3.11") \
+demo_image = bentoml.images.Image(python_version="3.11") \
     .python_packages("mlflow", "scikit-learn")
 
 target_names = ['setosa', 'versicolor', 'virginica']

@@ -6,7 +6,7 @@ from bentoml.validators import Shape, DType
 from typing import Annotated
 
 
-my_image = bentoml.images.PythonImage(python_version="3.11") \
+my_image = bentoml.images.Image(python_version="3.11") \
     .python_packages("mlflow", "scikit-learn")
 
 class MyInputParams(bentoml.IODescriptor):
