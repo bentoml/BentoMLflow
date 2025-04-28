@@ -58,7 +58,7 @@ For larger teams collaborating on multiple models and projects, you can use the 
 
 For more information about them, see the blog post [Building ML Pipelines with MLflow and BentoML](https://www.bentoml.com/blog/building-ml-pipelines-with-mlflow-and-bentoml).
 
-Let's try the Service with the basic setup. Run `bentoml serve` to start it.
+Let's try the Service with the basic setup. Run `bentoml serve` to start it.
 
 ```python
 $ bentoml serve service.py:IrisClassifier
@@ -66,7 +66,7 @@ $ bentoml serve service.py:IrisClassifier
 2024-06-19T10:25:31+0000 [INFO] [cli] Starting production HTTP BentoServer from "service:IrisClassifier" listening on http://localhost:3000 (Press CTRL+C to quit)
 ```
 
-The server is now active at [http://localhost:3000](http://localhost:3000/). You can interact with it using the Swagger UI or in other different ways.
+The server is now active at [http://localhost:3000](http://localhost:3000/). You can interact with it using the Swagger UI or in other different ways.
 
 <details>
 
