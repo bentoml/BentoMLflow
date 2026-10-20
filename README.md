@@ -6,8 +6,6 @@
 
 This is a BentoML example project that demonstrates how to serve and deploy an MLflow model with BentoML.
 
-See [here](https://docs.bentoml.com/en/latest/examples/overview.html) for a full list of BentoML example projects.
-
 ## Install dependencies
 
 Clone the repository.
@@ -106,22 +104,4 @@ with bentoml.SyncHTTPClient("http://localhost:3000") as client:
 
 For detailed explanations, see [the BentoML documentation](https://docs.bentoml.com/en/latest/examples/mlflow.html).
 
-## Deploy to BentoCloud
-
-After the Service is ready, you can deploy the application to BentoCloud for better management and scalability. [Sign up](https://www.bentoml.com/) if you haven't got a BentoCloud account.
-
-Make sure you have [logged in to BentoCloud](https://docs.bentoml.com/en/latest/scale-with-bentocloud/manage-api-tokens.html).
-
-```bash
-bentoml cloud login
-```
-
-Deploy it from the project directory.
-
-```bash
-bentoml deploy service.py:IrisClassifier
-```
-
-Once the application is up and running, you can access it via the exposed URL.
-
-**Note**: For custom deployment in your own infrastructure, use [BentoML to generate an OCI-compliant image](https://docs.bentoml.com/en/latest/get-started/packaging-for-deployment.html).
+For custom deployment in your own infrastructure, use [BentoML to generate an OCI-compliant image](https://docs.bentoml.com/en/latest/get-started/packaging-for-deployment.html).
